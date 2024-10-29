@@ -1,0 +1,52 @@
+import sys
+import math
+
+def get_coef(index, prompt):
+    try:
+        Kstr = sys.argv[index]
+    except:
+        # Вводим с клавиатуры
+        print(prompt)
+        Kstr = input()
+    # Переводим строку в действительное число
+    coef = float(Kstr)
+    return coef
+
+def discr_bi(a,b,c):
+    x1 = ((-b + (b**2 - 4 * a * c)**0.5)/(2 * a))**0.5
+    x2 = ((-b - (b**2 - 4 * a * c)**0.5)/(2 * a))**0.5
+    x3 = -(((-b + (b**2 - 4 * a * c)**0.5)/(2 * a))**0.5)
+    x4 = -(((-b - (b**2 - 4 * a * c)**0.5)/(2 * a))**0.5)
+    return(x1,x2,x3,x4)
+
+def main():
+ 
+    # Вычисление корней
+    roots = discr_bi(a,b,c)
+    # Вывод корней
+    len_roots = len(roots)
+    if len_roots == 0:
+        print('Нет корней')
+    elif len_roots == 1:
+        print('Один корень: {}'.format(roots[0]))
+    elif len_roots == 3:
+        print('3 корня: {} и {} и {}'.format(roots[0], roots[1], roots[2]))
+    elif len_roots == 2:
+        print('2 корня: {} и {} и {} и {}'.format(roots[0], roots[1]))
+    elif len_roots == 4:
+        print('4 корня: {} и {} и {} и {}'.format(roots[0], roots[1], roots[2], roots[3]))
+
+
+print("Введите последовательно коэффиценты A,B,C через пробел:")
+a,b,c = input().split()
+if a == 0:
+    print("Error a = 0")
+else:
+    print(a + '*(x**4) + ' + b + '*(x**2) + ' + c)
+    a = int(a)
+    b = int(b)
+    c = int(c)
+    x1,x2,x3,x4 = discr_bi(a,b,c)
+
+if __name__ == "__main__":
+    main()
